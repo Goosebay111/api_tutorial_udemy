@@ -1,4 +1,7 @@
-import 'package:api_tutorial_udemy/screens/product_detail_screen.dart';
+import 'dart:ffi';
+
+import 'package:api_tutorial_udemy/screens/all_category.dart';
+import 'package:api_tutorial_udemy/screens/product_detail.dart';
 import 'package:api_tutorial_udemy/services/api_service.dart';
 import 'package:flutter/material.dart';
 
@@ -13,9 +16,19 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.redAccent,
+        actions: [
+          IconButton(
+              icon: const Icon(Icons.view_list),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AllCategory()));
+              }),
+        ],
       ),
       body: FutureBuilder(
-        future: ApiService().getAllPosts(),
+        future: ApiService.getAllPosts(),
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             return Center(
