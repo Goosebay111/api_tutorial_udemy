@@ -34,7 +34,15 @@ class CartScreen extends StatelessWidget {
                               subtitle: Text(
                                   'Quantity: ${products[index]['quantity']}'),
                               trailing: IconButton(
-                                onPressed: () {},
+                                onPressed: () async {
+                                  await ApiService.deleteCart('1');
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Item deleted'),
+                                      backgroundColor: Colors.redAccent,
+                                    ),
+                                  );
+                                },
                                 icon: const Icon(
                                   Icons.delete,
                                   color: Colors.redAccent,
@@ -56,7 +64,7 @@ class CartScreen extends StatelessWidget {
         height: 60,
         width: double.infinity,
         color: Colors.green,
-        child: Center(
+        child: const Center(
           child: Text(
             'Order Now',
             style: TextStyle(color: Colors.white, fontSize: 30),

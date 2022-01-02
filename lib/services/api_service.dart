@@ -44,4 +44,67 @@ class ApiService {
     print(response.body);
     return json.decode(response.body);
   }
+
+  //POST REQUEST
+  static Future userLogin(String username, String password) async {
+    final loginUrl = Uri.parse('https://fakestoreapi.com/auth/login');
+    final response = await http.post(loginUrl, body: {
+      'username': username,
+      'password': password,
+    });
+    print(response.statusCode);
+    print(response.body);
+    return json.decode(response.body);
+  }
+
+  static Future updateCart(int userId, int productId) async {
+    final updateCartUrl = Uri.parse('https://fakestoreapi.com/carts/$userId');
+    final response = await http.put(updateCartUrl, body: {
+      'username': '$userId',
+      'date': DateTime.now().toString(),
+      'products': [
+        {
+          'productId': '$productId',
+          'quantity': '1',
+        }
+      ].toString(),
+    });
+    print(response.statusCode);
+    print(response.body);
+    return json.decode(response.body);
+  }
+
+//DELETE REQUEST
+  static Future deleteCart(String userId) async {
+    final deleteCartUrl = Uri.parse('https://fakestoreapi.com/carts/$userId');
+    final response = await http.delete(deleteCartUrl);
+    print(response.statusCode);
+    print(response.body);
+    return json.decode(response.body);
+  }
+
+  // static Future userAuthentication (String username, String password) async {
+  //   final authUrl = Uri.parse('https://fakestoreapi.somewhere.io');
+  //   final response = await http.post(authUrl, body: {
+  //     'username': username,
+  //     'password': password,
+  //   });
+  //   print(response.statusCode);
+  //   print(response.body);
+  // }
+
+  static Future userAuthorization(String username, String password) async {
+    final authUrl = Uri.parse('https://fakestoreapi.somewhere.io');
+    String basicAuth =
+        'Basic ' + base64Encode(utf8.encode('$username:$password'));
+    final response = await http.get(authUrl, headers: {
+      'Content-Type': 'application/json',
+      'authorization': basicAuth,
+      //with bearer auth, include.
+      // accessToken = 'some token value',
+      //'authorization': 'Bearer $accessToken',
+    });
+    print(response.statusCode);
+    print(response.body);
+  }
 }
