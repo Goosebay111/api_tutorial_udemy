@@ -35,4 +35,13 @@ class ApiService {
     print(response.body);
     return json.decode(response.body);
   }
+
+  static Future getCart(String userID) async {
+    final fetchCartProducts =
+        Uri.parse('https://fakestoreapi.com/carts/$userID');
+    final response = await http.get(fetchCartProducts);
+    print(response.statusCode);
+    print(response.body);
+    return json.decode(response.body);
+  }
 }

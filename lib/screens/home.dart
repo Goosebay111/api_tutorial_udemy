@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:api_tutorial_udemy/screens/all_category.dart';
+import 'package:api_tutorial_udemy/screens/cart_screen.dart';
 import 'package:api_tutorial_udemy/screens/product_detail.dart';
 import 'package:api_tutorial_udemy/services/api_service.dart';
 import 'package:flutter/material.dart';
@@ -18,13 +19,19 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.redAccent,
         actions: [
           IconButton(
-              icon: const Icon(Icons.view_list),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const AllCategory()));
-              }),
+            icon: const Icon(Icons.view_list),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const AllCategory()));
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.shopping_cart),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const CartScreen()));
+            },
+          ),
         ],
       ),
       body: FutureBuilder(
