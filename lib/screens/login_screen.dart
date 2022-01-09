@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
-
-  TextEditingController nameController =
+  // login details for website for user access.
+  final TextEditingController nameController =
       TextEditingController(text: "mor_2314");
-  TextEditingController passwordController =
+  final TextEditingController passwordController =
       TextEditingController(text: "83r5^_");
 
   @override
@@ -42,7 +42,7 @@ class LoginScreen extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
             ),
-            Container(
+            SizedBox(
                 height: 50,
                 width: MediaQuery.of(context).size.width,
                 child: ElevatedButton(
@@ -66,7 +66,7 @@ class LoginScreen extends StatelessWidget {
                       });
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: const Text('Login Failed'),
+                          content: Text('Login Failed'),
                           backgroundColor: Colors.red));
                     }
                   },
