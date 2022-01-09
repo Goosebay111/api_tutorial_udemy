@@ -52,7 +52,9 @@ class LoginScreen extends StatelessWidget {
                   ),
                   onPressed: () async {
                     final getToken = await ApiService.userLogin(
-                        nameController.text, passwordController.text);
+                      nameController.text,
+                      passwordController.text,
+                    );
                     if (getToken['token'] != null) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text(
